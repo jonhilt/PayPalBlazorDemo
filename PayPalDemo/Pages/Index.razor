@@ -13,6 +13,7 @@
     {
         if (firstRender)
         {
+            // replace with your own plan once you've set one up here: https://www.sandbox.paypal.com/billing/plans
             var planId = "P-61S92112RP924735VMOE434Y";
             await PayPalJs.SetUpPaymentButton(container, planId);
         }
