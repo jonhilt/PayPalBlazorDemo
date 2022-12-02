@@ -1,0 +1,23 @@
+﻿@page "/"
+@inject IPayPalJS PayPalJs
+
+<PageTitle>Index</PageTitle>
+
+<div @ref="container" />
+
+@code {
+
+    private ElementReference container;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var planId = "P-61S92112RP924735VMOE434Y";
+            await PayPalJs.SetUpPaymentButton(container, planId);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+}
