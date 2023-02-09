@@ -1,6 +1,4 @@
 ﻿export function renderPaymentUI(container, planId) {
-
-     console.log(container);
     
     paypal.Buttons({
         style: {
@@ -21,3 +19,4 @@
     }).render(container); // Renders the PayPal button
 
 }
+
