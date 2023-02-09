@@ -23,4 +23,4 @@ To run this demo you'll need to:
 
 To run this:
 - Update the PayPal script reference in FullStackPayPalDemo/Pages/_Host.cshtml (to include your clientId)
-- Put your ClientId and AppSecret values in the relevant places in appsettings.json
+- Put your ClientId and AppSecret values in the relevant places in FullStackPayPalDemo/appsettings.json
