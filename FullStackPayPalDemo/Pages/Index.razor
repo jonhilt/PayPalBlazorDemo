@@ -5,13 +5,22 @@
 @inject IPayPalJS PayPalJs
 @inject PayPalService PayPalService
 
-<div id="paypal-button-container" @ref="payPalContainer"/>
+<button @onclick="ShowPaymentButton">
+    Show Payment Button
+</button>
+
+@if (showPaymentButton)
+{
+    <div id="paypal-button-container" @ref="payPalContainer"/>
+}
 
 @code {
 
     ElementReference payPalContainer;
     private DotNetObjectReference<Index> objRef;
-
+    private bool showPaymentButton;
+    private bool payPalInitialized;
+    
     protected override async Task OnInitializedAsync()
     {
         objRef = DotNetObjectReference.Create(this);
@@ -19,9 +28,10 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (payPalContainer.Context != null && payPalInitialized == false)
         {
             await PayPalJs.SetUpPaymentButton(payPalContainer, "planId", objRef);
+            payPalInitialized = true;
         }
 
         await base.OnAfterRenderAsync(firstRender);
@@ -46,6 +56,11 @@
     public async Task<CapturePaymentResponse> CapturePayment(string orderId)
     {
         return await PayPalService.CapturePayment(orderId);
+    }
+    
+    private async Task ShowPaymentButton()
+    {
+        showPaymentButton = true;
     }
 
 }
