@@ -1,66 +1,21 @@
 ﻿@page "/"
-@using PayPalDemo
-@using FullStackPayPalDemo.Pages.PayPal
-@using FullStackPayPalDemo.Services.PayPal
-@inject IPayPalJS PayPalJs
-@inject PayPalService PayPalService
 
-<button @onclick="ShowPaymentButton">
-    Show Payment Button
+<button @onclick="TogglePaymentButton">
+    Toggle Payment Button
 </button>
 
 @if (showPaymentButton)
 {
-    <div id="paypal-button-container" @ref="payPalContainer"/>
+    <PayPalButtons/>
 }
 
 @code {
 
-    ElementReference payPalContainer;
-    private DotNetObjectReference<Index> objRef;
     private bool showPaymentButton;
-    private bool payPalInitialized;
-    
-    protected override async Task OnInitializedAsync()
-    {
-        objRef = DotNetObjectReference.Create(this);
-    }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    private async Task TogglePaymentButton()
     {
-        if (payPalContainer.Context != null && payPalInitialized == false)
-        {
-            await PayPalJs.SetUpPaymentButton(payPalContainer, "planId", objRef);
-            payPalInitialized = true;
-        }
-
-        await base.OnAfterRenderAsync(firstRender);
-    }
-
-    [JSInvokable]
-    public async Task<CreateOrderResponse> CreateOrder()
-    {
-        var order = new CreateOrderRequest
-        {
-            Intent = "CAPTURE",
-            PurchaseUnits = new[]
-            {
-                new Unit { Amount = new Amount { Value = 100.00, CurrencyCode = "USD" } }
-            }
-        };
-
-        return await PayPalService.PlaceOrder(order);
-    }
-
-    [JSInvokable]
-    public async Task<CapturePaymentResponse> CapturePayment(string orderId)
-    {
-        return await PayPalService.CapturePayment(orderId);
-    }
-    
-    private async Task ShowPaymentButton()
-    {
-        showPaymentButton = true;
+        showPaymentButton = !showPaymentButton;
     }
 
 }

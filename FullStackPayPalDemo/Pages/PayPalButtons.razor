@@ -1,0 +1,50 @@
+﻿@using PayPalDemo
+@using FullStackPayPalDemo.Services.PayPal
+@using FullStackPayPalDemo.Pages.PayPal
+@inject IPayPalJS PayPalJs
+@inject PayPalService PayPalService
+
+<div id="paypal-button-container" @ref="payPalContainer"/>
+
+@code {
+
+    ElementReference payPalContainer;
+    private DotNetObjectReference<PayPalButtons> objRef;
+
+    protected override async Task OnInitializedAsync()
+    {
+        objRef = DotNetObjectReference.Create(this);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await PayPalJs.SetUpPaymentButton(payPalContainer, "planId", objRef);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    [JSInvokable]
+    public async Task<CreateOrderResponse> CreateOrder()
+    {
+        var order = new CreateOrderRequest
+        {
+            Intent = "CAPTURE",
+            PurchaseUnits = new[]
+            {
+                new Unit { Amount = new Amount { Value = 100.00, CurrencyCode = "USD" } }
+            }
+        };
+
+        return await PayPalService.PlaceOrder(order);
+    }
+
+    [JSInvokable]
+    public async Task<CapturePaymentResponse> CapturePayment(string orderId)
+    {
+        return await PayPalService.CapturePayment(orderId);
+    }
+
+}
