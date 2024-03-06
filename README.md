@@ -8,10 +8,11 @@ Once there, create a Sandbox account.
 
 You should then be able to log in over at: https://www.sandbox.paypal.com/billing/plans
 
-There are two possible strategies shown here:
+There are three strategies demonstrated here:
 
 1. Integration via PayPal checkout which requires an endpoint for subsequent webhook calls
-1. A "full stack" version where JS interacts with the Blazor Server component via JS Interop
+2. A "full stack" version where JS interacts with the Blazor Server component via JS Interop
+3. A .NET 8 SSR version (would require an endpoint for webhook calls to fulfil the order) 
 
 ## Version 1 (WebHooks approach)
 
@@ -24,3 +25,8 @@ To run this demo you'll need to:
 To run this:
 - Update the PayPal script reference in FullStackPayPalDemo/Pages/_Host.cshtml (to include your clientId)
 - Put your ClientId and AppSecret values in the relevant places in FullStackPayPalDemo/appsettings.json
+
+## Version 3 (".NET 8 SSR" approach)
+
+To run this:
+- Put your ClientId and AppSecret values in the relevant places in PayPalSSR/appsettings.Development.json
