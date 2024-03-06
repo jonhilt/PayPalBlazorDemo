@@ -1,6 +1,8 @@
-function initialisePayPal(){
-    let container = document.getElementById('paypal_container');
+function initialisePayPal() {
 
+    if(paypal.Buttons.instances.length >= 1) return;
+
+    let container = document.getElementById('paypal_container');
     paypal.Buttons({
         style: {
             shape: 'rect',
@@ -17,9 +19,10 @@ function initialisePayPal(){
         onApprove: function (data, actions) {
             alert(data.subscriptionID); // You can add optional success message for the subscriber here
         }
-    }).render(container); // Renders the PayPal button
+    }).render(container); // Renders the PayPal button 
+
 }
 
-export function onUpdate(){
+export function onUpdate() {
     initialisePayPal();
 }
