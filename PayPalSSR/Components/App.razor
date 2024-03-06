@@ -1,0 +1,28 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<PayPalOptions> PayPalOptions
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="/"/>
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="app.css"/>
+    <link rel="stylesheet" href="PayPalSSR.styles.css"/>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <HeadOutlet/>
+    
+    <!-- Replace <your-client-id> with your client id in the following script reference -->
+    <script src="https://www.paypal.com/sdk/js?client-id=@PayPalOptions.Value.ClientId&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+
+</head>
+
+<body>
+<Routes/>
+<script src="_framework/blazor.web.js"></script>
+
+</body>
+
+</html>

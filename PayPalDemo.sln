@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPalDemo", "PayPalDemo\Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullStackPayPalDemo", "FullStackPayPalDemo\FullStackPayPalDemo.csproj", "{B14EB1BE-A681-443A-9C5E-C992946725C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPalSSR", "PayPalSSR\PayPalSSR.csproj", "{DE083760-17F6-466F-9196-657F63CBDE95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{B14EB1BE-A681-443A-9C5E-C992946725C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B14EB1BE-A681-443A-9C5E-C992946725C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B14EB1BE-A681-443A-9C5E-C992946725C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE083760-17F6-466F-9196-657F63CBDE95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE083760-17F6-466F-9196-657F63CBDE95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE083760-17F6-466F-9196-657F63CBDE95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE083760-17F6-466F-9196-657F63CBDE95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
